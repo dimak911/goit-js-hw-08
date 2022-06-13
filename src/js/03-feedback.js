@@ -8,6 +8,11 @@ const feedbackFormState = { email: '', message: '' };
 let localStorageData = localStorage.getItem('feedback-form-state');
 const parsedLocalStorageData = JSON.parse(localStorageData);
 
+if (localStorageData) {
+  feedbackFormState.email = parsedLocalStorageData.email;
+  feedbackFormState.message = parsedLocalStorageData.message;
+}
+
 formRef.addEventListener('input', throttle(saveInputToLocal, 500));
 formRef.addEventListener('submit', onSubmitAction);
 fillFieldsWithSavedData();
